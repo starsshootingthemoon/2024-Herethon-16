@@ -24,6 +24,7 @@ body {
     display: flex;
     width: 100%;
 }
+
 .sidebar {
     background-image: url('../images/side.png');
     background-size: cover;
@@ -97,6 +98,9 @@ body {
     background-color: rgba(255, 255, 255, 1);
     border-radius: 8px;
     margin-top: 20px;
+    display: flex;
+    flex-direction: column; /* 기존에는 row로 되어 있었음 */
+    align-items: center; /* 아이템들을 세로 가운데 정렬 */
 }
 
 .profile-container {
@@ -104,10 +108,10 @@ body {
     justify-content: center; /* 가로 중앙 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
     background-image: url('../images/profileback.png');
-    width: 1140px;
+    width: 1160px;
     height: 300px; 
     margin-top: 70px;
-    margin-left: -15px;
+    margin-left: 51px;
 }
 
 /* ## 프로필*/
@@ -245,6 +249,11 @@ body {
     padding-left: 10px;
 }
 
+.all{
+    margin-top: 500px;
+    margin-left: -1100px;
+    z-index: 1000;
+}
 
 .careersection {
     display: flex;
@@ -346,8 +355,8 @@ td {
 }
 
 #Textarea{
-    width: 93%;
-    height: 100px;
+    width: 94%;
+    height: 150px;
     border: 2px solid #17B001;
     padding: 30px;
     resize: none;
@@ -359,20 +368,13 @@ td {
     margin-bottom: 0;
 }
 
-.video {
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start; 
-    align-items: center;
-    margin-top: -80px;
-}
+
 
 .videocontrol {
     width: 430px;
     height: 270px;
     margin: 20px 20px 0 20px;
+    position: relative;
 }
 
 .rebtn {
@@ -390,6 +392,15 @@ td {
     background-color: #C8FFC1;
 }
 
+.video-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(430px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+}
+
 .videocontrol .minus img {
     width: 30px;
     height: auto;
@@ -404,6 +415,6 @@ td {
     justify-content: space-between;
     margin: 20px;
     position: relative;
-    top: 65px;
+    top: -280px;
     z-index: 1;
 }

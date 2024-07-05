@@ -31,10 +31,10 @@
 
     <!-- 본문 -->
     <div class="main-content">
-                <form id="portfolioForm" method="POST" action="{% url 'accounts:create_myportfolio' %}" enctype="multipart/form-data">
+                <form id="portfolioForm" method="POST" action="{% url 'accounts:update_myportfolio' %}" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="profile-container">
-                        <button type="button" id="fixedbtn" onclick="navigateToSubmit()">포트폴리오 등록</button>
+                        <input type="submit" id="fixedbtn" value="포트폴리오 수정"/>
                         <section class="myProfile">
                             <div id="myPhoto">
                                 {% if user.mypage_image %}
@@ -80,6 +80,7 @@
         </div>
         
         <div class="content">
+            <div class="all">
             <div class="careersection">
                 <h3>경력</h3>
             </div>
@@ -104,6 +105,8 @@
                         <td>{{ career.career_year }}</td>
                     </tr>
                     {% endfor %}
+                    <form method="POST" action="{% url 'accounts:create_my_career' %}">
+                        {% csrf_token %}
                     <tr>
                     <div class="plusarea">
                         <input type="text" placeholder="작품명" id="sec1" name="career_title">
@@ -112,12 +115,13 @@
                     </div>
                     </tr>
                     <input type="submit" value="추가">
+                </form>
                 </table>
             </div>
             <hr>
     
             <h3>소개 글</h3>
-            <textarea id="exampleTextarea" placeholder="자기 소개 글을 입력해 주세요!" name="introduce" rows="4" cols="50" maxlength="500"></textarea>
+            <textarea id="Textarea" placeholder="자기 소개 글을 입력해 주세요!" name="intro" rows="4" cols="50" maxlength="500"></textarea>
                     
     
             <hr>
@@ -127,7 +131,8 @@
                     <a href="{% url 'accounts:create_my_video' %}"><img src="../static/icons/+ 2.svg"></a>
                 </div>
             </div>
-                <div class="video">
+            <div class="video-container">
+
                     <div class="videocontrol">
                         {% if posts %}
                             {% for post in posts %}
@@ -149,7 +154,9 @@
                     {% endif %}
                     </div>
                     
-                </div>
+
+            </div>
+            </div>
     </div>
 </div>
 
@@ -162,10 +169,6 @@ window.location.href = "../Herethon_16_FE/templates/edit/edit.html";
 }
 
 <!-- 수정 완료 -->
-
-function EditDone() {
-}
-
 </script>
 
 </body>
