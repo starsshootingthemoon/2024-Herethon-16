@@ -6,16 +6,16 @@ from django.contrib.auth.decorators import login_required
 # 포트폴리오 보기
 @login_required
 def portfolio_list(request):
-    #portfolios = Portfolio.objects.all().order_by('-created_at').prefetch_related('careers', 'videos', 'photos')
-    selected_roles = request.GET.getlist('roles')
-    if selected_roles:
-        portfolios = Portfolio.objects.filter(role__in=selected_roles).distinct().order_by('-created_at').prefetch_related('careers', 'videos', 'photos')
+    roles = Role.objects.all()
+    selected_role_id = request.GET.get('roles')
+    if selected_role_id:
+        selected_role = get_object_or_404(Role, id=selected_role_id)
+        portfolios = selected_role.portfolios.all().order_by('-created_at').prefetch_related('careers', 'videos', 'photos')
+        return render(request, "portfolios/portfolio_list.html", {"portfolios": portfolios, 'roles': roles, 'selected_role': selected_role})
     else:
         portfolios = Portfolio.objects.all().order_by('-created_at').prefetch_related('careers', 'videos', 'photos')
-    roles = Role.objects.all()
+        return render(request, "portfolios/portfolio_list.html", {"portfolios": portfolios, 'roles': roles})
     
-    return render(request,"portfolios/portfolio_list.html", {"portfolios" : portfolios, 'roles': roles, 'selected_roles': selected_roles})
-
 # 상세 포트폴리오
 @login_required
 def portfolio_detail(request, id):
